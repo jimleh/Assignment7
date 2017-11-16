@@ -1,20 +1,22 @@
 ﻿<div ng-app="myApp" ng-controller="myController">
     <div class="jumbotron" ng-init="getData()">
-        <div class="form-group">
-            <form ng-submit="sendData()" class="form-inline" ng-hide="edit">
+        <div class="form-group body-content" ng-hide="edit">
+            <form ng-submit="sendData()" class="form-inline">
                 <input class="form-control" placeholder="Enter Name" type="text" required ng-model="Person.Name" />
                 <input class="form-control" placeholder="Enter City" type="text" ng-model="Person.City" />
                 <input class="form-control" placeholder="Enter Occupation" type="text" ng-model="Person.Occupation" />
                 <input class="btn btn-success" type="submit" value="Add!" />
             </form>
-            <form ng-submit="editData()" class="form-inline" ng-show="edit">
+        </div>
+        <div class="form-group body-content alert-success" ng-show="edit">
+            <form ng-submit="editData()" class="form-inline">
                 <input class="form-control" placeholder="Enter Name" type="text" required ng-model="Person.Name" />
                 <input class="form-control" placeholder="Enter City" type="text" ng-model="Person.City" />
                 <input class="form-control" placeholder="Enter Occupation" type="text" ng-model="Person.Occupation" />
                 <input class="btn btn-success" type="submit" value="Edit!" />
             </form>
         </div>
-        <div class="form-group">
+        <div class="form-group body-content">
             <form class="form-inline">
                 <input class="form-control" ng-model="search" placeholder="Search" />
                 <label class="label">
@@ -26,7 +28,7 @@
                 </label>
             </form>
         </div>
-        <div>
+        <div class="body-content">
             <table class="table" ng-show="persons">
                 <thead>
                     <tr>
