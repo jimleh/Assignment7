@@ -1,0 +1,57 @@
+﻿<div ng-app="myApp" ng-controller="myController">
+    <div class="jumbotron" ng-init="getData()">
+        <div class="form-group">
+            <form ng-submit="sendData()" class="form-inline" ng-hide="edit">
+                <input class="form-control" placeholder="Enter Name" type="text" required ng-model="Person.Name" />
+                <input class="form-control" placeholder="Enter City" type="text" ng-model="Person.City" />
+                <input class="form-control" placeholder="Enter Occupation" type="text" ng-model="Person.Occupation" />
+                <input class="btn btn-success" type="submit" value="Add!" />
+            </form>
+            <form ng-submit="editData()" class="form-inline" ng-show="edit">
+                <input class="form-control" placeholder="Enter Name" type="text" required ng-model="Person.Name" />
+                <input class="form-control" placeholder="Enter City" type="text" ng-model="Person.City" />
+                <input class="form-control" placeholder="Enter Occupation" type="text" ng-model="Person.Occupation" />
+                <input class="btn btn-success" type="submit" value="Edit!" />
+            </form>
+        </div>
+        <div class="form-group">
+            <form class="form-inline">
+                <input class="form-control" ng-model="search" placeholder="Search" />
+                <label class="label">
+                    <span>City</span>
+                    <select class="form-control" ng-model="search">
+                        <option value=""></option>
+                        <option ng-repeat="city in cities" value="{{city}}">{{city}}</option>
+                    </select>
+                </label>
+            </form>
+        </div>
+        <div>
+            <table class="table" ng-show="persons">
+                <thead>
+                    <tr>
+                        <th><a href="" ng-click="sortData('ID')">ID</a></th>
+                        <th><a href="" ng-click="sortData('Name')">Name</a></th>
+                        <th><a href="" ng-click="sortData('City')">City</a></th>
+                        <th><a href="" ng-click="sortData('Occupation')">Occupation</a></th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="person in persons |filter:search| orderBy:sorter track by $index">
+                        <td>{{person.ID}}</td>
+                        <td>{{person.Name}}</td>
+                        <td>{{person.City}}</td>
+                        <td>{{person.Occupation}}</td>
+                        <td>
+                            <a href="" ng-click="startEdit(person)">Edit</a>
+                            |
+                            <a href="" ng-click="deleteData(person.ID)">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
